@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Readmore from '../assets/readMore.png';
+import PagArrow from '../assets/ArrowPag.png';
 import { useNavigate } from 'react-router-dom';
 
 interface Image {
@@ -104,10 +105,10 @@ function Posts() {
                                 <img
                                     src={article.fields.Image && article.fields.Image.length > 0 ? article.fields.Image[0].url : ''}
                                     alt="Icon"
-                                    className=""
+                                    className="blog-img-d"
                                 />
 
-                                <div className="card-body">
+                                <div className="card-body blog-preview">
                                     <div className="row">
                                         <h5 className="card-title" id="blog-head">{article.fields['Name (from Categories)'][0]}</h5>
                                         <h3 className="card-title" id="blog-head2">{article.fields.Title}</h3>
@@ -128,7 +129,16 @@ function Posts() {
 
                 </div>
                 <div className="pagination">
-                    <ul> </ul>
+                    <ul className='pag-number'>
+                        <li><img src={PagArrow} className='prev-arrow' alt="" /></li>
+                        <li className='numb active'>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>......</li>
+                        <li>20</li>
+                        <li><img src={PagArrow} alt="" /></li>
+
+                    </ul>
                 </div>
             </div>
 

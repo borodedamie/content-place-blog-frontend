@@ -119,7 +119,10 @@ function Writeup() {
         <>
             <section id="news-details">
                 <div className="container">
-                    <img src={article.fields.Image && article.fields.Image.length > 0 ? article.fields.Image[0].url : ''} alt="" className="img-fluid news-pic" />
+                    <div className="d-flex justify-content-center">
+                        <img src={article.fields.Image && article.fields.Image.length > 0 ? article.fields.Image[0].url : ''} alt="" className="img-fluid news-pic" />    
+                    </div>
+                
 
                     <div className="row container">
                         <h5 className="card-title px-0" id="blog-head">{article.fields['Name (from Categories)'][0]}</h5>
