@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Readmore from '../assets/readMore.png';
 import PagArrow from '../assets/ArrowPag.png';
 import { useNavigate } from 'react-router-dom';
+import { formatRelativeTime } from '../util/ConvertDateTime';
 
 interface Image {
     filename: string;
@@ -74,7 +75,6 @@ function Posts() {
 
     useEffect(() => {
         fetchArticles(pageSize).then(data => {
-            console.log(data.records)
             setArticles(data.records);
         });
     }, []);
@@ -124,7 +124,7 @@ function Posts() {
                                                 <p>Read More<span><img src={Readmore} alt="" /></span></p>
                                             </a></div>
                                             <div className="post-time">
-                                                <p>Posted 30 mins ago</p>
+                                                <p>Posted {formatRelativeTime(article.fields['Created At'])}</p>
                                             </div>
                                         </div>
                                     </div>
