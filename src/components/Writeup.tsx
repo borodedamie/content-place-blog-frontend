@@ -1,6 +1,7 @@
 import ShareIcon from '../assets/share-icon.png';
 import { useState, useEffect, FormEvent } from 'react';
 import { useParams } from 'react-router-dom';
+import { formatRelativeTime } from '../util/ConvertDateTime';
 
 interface Image {
     filename: string;
@@ -53,6 +54,18 @@ interface Comment {
     };
 }
 
+async function share(id: string) {
+    const shareData = {
+        title: document.title,
+        url: window.location.href
+    }
+
+    try {
+        if (id) await navigator.share(shareData)
+    } catch (err) {
+        console.log(`Error: ${err}`)
+    }
+}
 
 function Writeup() {
     const [article, setArticle] = useState<Article | null>(null);
@@ -120,17 +133,17 @@ function Writeup() {
             <section id="news-details">
                 <div className="container">
                     <div className="d-flex justify-content-center">
-                        <img src={article.fields.Image && article.fields.Image.length > 0 ? article.fields.Image[0].url : ''} alt="" className="img-fluid news-pic" />    
+                        <img src={article.fields.Image && article.fields.Image.length > 0 ? article.fields.Image[0].url : ''} alt="" className="img-fluid news-pic" />
                     </div>
-                
+
 
                     <div className="row container">
                         <h5 className="card-title px-0" id="blog-head">{article.fields['Name (from Categories)'][0]}</h5>
                         <h3 className="card-title  px-0 news-text" id="blog-head2">{article.fields.Title}</h3>
                         <p className="card-text blog-info px-0">{article.fields.Body}</p>
                         <div className="d-flex flex-column flex-lg-row">
-                            <div className=" d-flex flex-row align-items-center"><div className="d-flex flex-row share"><img src={ShareIcon} alt="" className="img-fluid" /><div className="d-flex align-items-center share-txt"><p>Share</p></div></div>
-                                <div className="post-time2"><p>Posted 30 mins ago</p></div>
+                            <div className=" d-flex flex-row align-items-center"><div className="d-flex flex-row share" onClick={() => share( article.id )}><img src={ShareIcon} alt="" className="img-fluid" /><div className="d-flex align-items-center share-txt"><p>Share</p></div></div>
+                                <div className="post-time2"><p>Posted {formatRelativeTime(article.fields['Created At'])}</p></div>
                             </div>
                         </div>
                     </div>
