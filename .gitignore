@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Node.js dependencies
 node_modules/
 npm-debug.log*
@@ -27,10 +28,32 @@ build/
 # Editor directories and files
 .vscode/
 .idea/
+=======
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+>>>>>>> 000154a536bf4f40195689bb6f1ed093c9e0f21f
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
+<<<<<<< HEAD
 *.sw*
 
 # Mac specific files
@@ -63,3 +86,6 @@ coverage/
 
 # Build output
 build/
+=======
+*.sw?
+>>>>>>> 000154a536bf4f40195689bb6f1ed093c9e0f21f
