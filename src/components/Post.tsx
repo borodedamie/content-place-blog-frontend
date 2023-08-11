@@ -53,6 +53,7 @@ interface ArticlesResponse {
 
 function Posts() {
     const [articles, setArticles] = useState<Article[]>([]);
+    const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [pageStart, setPageStart] = useState(1);
     const [pageEnd, setPageEnd] = useState(3);
@@ -73,9 +74,13 @@ function Posts() {
         return data as ArticlesResponse;
     }
 
+    console.log(articles);
+
     useEffect(() => {
+        setLoading(true);
         fetchArticles(pageSize).then(data => {
             setArticles(data.records);
+            setLoading(false);
         });
     }, []);
 
@@ -101,6 +106,8 @@ function Posts() {
         }
     }
 
+    if (loading) return (<div>loading...</div>)
+
     return (
         <section className="blog-news">
             <div className="container">
@@ -116,7 +123,9 @@ function Posts() {
 
                                 <div className="card-body blog-preview">
                                     <div className="row">
-                                        <h5 className="card-title" id="blog-head">{article.fields['Name (from Categories)'][0]}</h5>
+                                        <h5 className="card-title" id="blog-head">
+                                            {article.fields['Name (from Categories)'] ? article.fields['Name (from Categories)'][0] : 'No Category in airtable'}
+                                        </h5>
                                         <h3 className="card-title" id="blog-head2">{article.fields.Title}</h3>
                                         <p className="card-text blog-info">{article.fields.Headline}</p>
                                         <div className="d-flex flex-column flex-lg-row justify-content-between">
