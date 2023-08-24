@@ -75,6 +75,8 @@ function Writeup() {
     const [loading, setLoading] = useState(false);
     const { articleId } = useParams();
 
+    console.log(article);
+
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/articles/${articleId}`)
             .then(response => response.json())
