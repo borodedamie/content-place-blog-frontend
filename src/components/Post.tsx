@@ -59,37 +59,68 @@ function Posts() {
     const [pageEnd, setPageEnd] = useState(3);
     const pageSize = 6;
     const maxPages = 100;
-    const [offset, setOffset] = useState<string | undefined>(undefined);
+    // const [offset, setOffset] = useState<string | undefined>(undefined);
     const navigate = useNavigate();
+    const [allArticles, setAllArticles] = useState<Article[]>([]);
 
-    async function fetchArticles(pageSize = 6, offset?: string): Promise<ArticlesResponse> {
+    // async function fetchArticles(pageSize = 6, offset?: string): Promise<ArticlesResponse> {
+    //     const url = `${import.meta.env.VITE_API_URL}/articles`;
+    //     const params = new URLSearchParams({ page_size: pageSize.toString() });
+    //     if (offset) {
+    //         params.append('offset', offset);
+    //     }
+
+    //     const response = await fetch(`${url}?${params.toString()}`);
+    //     const data = await response.json();
+    //     return data as ArticlesResponse;
+    // }
+
+    async function fetchAllArticles(): Promise<ArticlesResponse> {
         const url = `${import.meta.env.VITE_API_URL}/articles`;
-        const params = new URLSearchParams({ page_size: pageSize.toString() });
-        if (offset) {
-            params.append('offset', offset);
-        }
-
-        const response = await fetch(`${url}?${params.toString()}`);
+        const response = await fetch(url);
         const data = await response.json();
         return data as ArticlesResponse;
     }
 
-    console.log(articles);
+    console.log(allArticles);
+    console.log('articles', articles)
+
+    // useEffect(() => {
+    //     setLoading(true);
+    //     fetchArticles(pageSize).then(data => {
+    //         setArticles(data.records);
+    //         setLoading(false);
+    //     });
+    // }, []);
 
     useEffect(() => {
         setLoading(true);
-        fetchArticles(pageSize).then(data => {
-            setArticles(data.records);
+        fetchAllArticles().then(data => {
+            setAllArticles(data.records);
+            // Slice the allArticles array to get the first set of 6 records
+            const firstRecords = data.records.slice(0, pageSize);
+            setArticles(firstRecords);
             setLoading(false);
         });
     }, []);
 
+
+    // const handleClick = (pageNumber: number) => {
+    //     setCurrentPage(pageNumber);
+    //     fetchArticles(pageSize, offset).then(data => {
+    //         setArticles(data.records);
+    //         setOffset(data.offset);
+    //     });
+    // }
+
     const handleClick = (pageNumber: number) => {
         setCurrentPage(pageNumber);
-        fetchArticles(pageSize, offset).then(data => {
-            setArticles(data.records);
-            setOffset(data.offset);
-        });
+        // Calculate the start and end index based on the page number and page size
+        const startIndex = (pageNumber - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        // Slice the allArticles array to get the records for the current page
+        const currentRecords = allArticles.slice(startIndex, endIndex);
+        setArticles(currentRecords);
     }
 
     const handleNextClick = () => {
@@ -159,4 +190,4 @@ function Posts() {
     )
 }
 
-export default Posts;
+export default Posts; 
