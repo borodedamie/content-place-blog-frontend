@@ -134,7 +134,9 @@ function Posts() {
         }
     }
 
-    if (loading) return (<div>loading...</div>)
+    if (loading) return (<div className="loadingio-spinner-pulse-ogt0qnihb3"><div className="ldio-m3bt2oi6y4n">
+<div></div><div></div><div></div>
+</div></div>)
 
     return (
         <section className="blog-news">

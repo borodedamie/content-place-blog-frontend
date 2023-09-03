@@ -125,7 +125,9 @@ function Writeup() {
     }
 
     if (!article) {
-        return <div>Loading...</div>;
+        return (<div className="loadingio-spinner-ellipsis-fq8v5hxfo1t"><div className="ldio-0hu6bojxdbfj">
+<div></div><div></div><div></div><div></div><div></div>
+</div></div>);
     }
 
     return (
