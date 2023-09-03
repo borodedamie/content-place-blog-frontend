@@ -82,9 +82,6 @@ function Posts() {
         return data as ArticlesResponse;
     }
 
-    console.log(allArticles);
-    console.log('articles', articles)
-
     // useEffect(() => {
     //     setLoading(true);
     //     fetchArticles(pageSize).then(data => {
