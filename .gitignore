@@ -31,7 +31,6 @@ build/
 *.ntvs*
 *.njsproj
 *.sln
-<<<<<<< HEAD
 *.sw*
 
 # Mac specific files
@@ -64,6 +63,3 @@ coverage/
 
 # Build output
 build/
-=======
-*.sw?
->>>>>>> 000154a536bf4f40195689bb6f1ed093c9e0f21f
