@@ -1,12 +1,15 @@
 import Contentplacelogo from "../../assets/Logo2.png";
+import { useNavigate } from "react-router-dom";
 
 
 function Navbar() {
+    const navigate = useNavigate();
+
     return (
         <section className="p-5  text-center text-md-start" style={{ backgroundColor: "#fff" }}>
             <nav className="navbar fixed-top navbar-expand-lg navbar-light" style={{ height: "100px" }}>
                 <div id="navigation" className="container">
-                    <a href="#" className="navbar-brand">
+                    <a onClick={() => navigate('/')} className="navbar-brand" style={{ cursor: "pointer" }}>
                         <img src={Contentplacelogo} alt="" className="nav-logo" id="blog-logo" />
                     </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
@@ -26,7 +29,7 @@ function Navbar() {
                                     <li className="nav-item"><a className="dropdown-item" href="#">Text Content Creation</a></li>
                                     <li className="nav-item"><a className="dropdown-item " href="#">Web Services</a></li>
                                 </ul>
-                            </li>
+                            </li> 
                             <li className="nav-item d-inline-block" id="about">
                                 <a className="nav-link disabled d-inline-block" href="#" tabIndex={-1} aria-disabled="true">ABOUT US</a>
                             </li>
@@ -38,7 +41,7 @@ function Navbar() {
                                 <button className="btn text-center booking-btn" type="submit">BOOK A SESSION</button>
                             </li>
                             <li>
-                                <a href="./static/blog.html"><button className="btn text-center blog-btn text-decoration-none"
+                                <a onClick={() => navigate('/blog')}><button className="btn text-center blog-btn text-decoration-none"
                                     type="submit">VISIT BLOG</button>
                                 </a>
                             </li>

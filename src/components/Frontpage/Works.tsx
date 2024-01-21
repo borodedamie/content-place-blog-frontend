@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Work from "../../assets/works.png";
 import Starworks from "../../assets/starworks.png";
 import PrevBtn from "../../assets/prev3.png";
@@ -61,6 +61,10 @@ function Works() {
         }
     };
 
+    useEffect(() => {
+        showSlides(slideIndex, 'mySlides');
+    }, [slideIndex]);
+
 
     return (
         <section
@@ -69,16 +73,56 @@ function Works() {
         >
             <div className="container">
                 <h5 className="contact-header">OUR WORKS</h5>
-                <div className="tcontainer">
+                <div className="container">
                     <div className="wrapper">
                         <ul className="indicator">
-                            <li className="active" data-target="#home" onClick={() => handleIndicatorClick('#home')}>
+                            <li
+                                className="active"
+                                data-target="#home"
+                                onClick={() => {
+                                    handleIndicatorClick('#home');
+                                }}
+                            >
                                 Audio Content Creation
                             </li>
-                            <li data-target="#profile">Visual Content Creation</li>
-                            <li data-target="#contact1">Web Services</li>
-                            <li data-target="#settings">Text Content Creation</li>
+                            <li
+                                data-target="#profile"
+                                onClick={() => {
+                                    handleIndicatorClick('#profile');
+                                    setSlideIndex((prevIndex) => {
+                                        showSlides(prevIndex, 'mySlides2');
+                                        return prevIndex;
+                                    });
+                                }}
+                            >
+                                Visual Content Creation
+                            </li>
+                            <li
+                                data-target="#contact1"
+                                onClick={() => {
+                                    handleIndicatorClick('#contact1');
+                                    setSlideIndex((prevIndex) => {
+                                        showSlides(prevIndex, 'mySlides3');
+                                        return prevIndex;
+                                    });
+                                }}
+                            >
+                                Web Services
+                            </li>
+                            <li
+                                data-target="#settings"
+                                onClick={() => {
+                                    handleIndicatorClick('#settings');
+                                    setSlideIndex((prevIndex) => {
+                                        showSlides(prevIndex, 'mySlides4');
+                                        return prevIndex;
+                                    });
+                                }}
+                            >
+                                Text Content Creation
+                            </li>
                         </ul>
+
                         <ul className="content">
                             <li className="active" id="home">
                                 <div className="slideshow-container">

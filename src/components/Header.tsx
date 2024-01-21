@@ -3,7 +3,7 @@ import Logo from '../assets/Logo2.png';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     
     return (
         <section className="p-5 text-center text-md-start" style={{ backgroundColor: "#fff" }}>
@@ -33,7 +33,7 @@ function Header() {
                             className="navbar-nav ms-auto my-2 my-lg-0 mx-3 text-center no-wrap d-flex align-items-center"
                         >
                             <li>
-                                <a href="./index.html">
+                                <a onClick={() => navigate('/')}>
                                     <button className="btn text-center blog-btn" id="leave-blog" type="submit">
                                         LEAVE BLOG
                                     </button>
@@ -44,7 +44,6 @@ function Header() {
                 </div>
             </nav>
         </section>
-
     )
 }
 

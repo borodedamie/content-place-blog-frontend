@@ -63,32 +63,12 @@ function Posts() {
     const navigate = useNavigate();
     const [allArticles, setAllArticles] = useState<Article[]>([]);
 
-    // async function fetchArticles(pageSize = 6, offset?: string): Promise<ArticlesResponse> {
-    //     const url = `${import.meta.env.VITE_API_URL}/articles`;
-    //     const params = new URLSearchParams({ page_size: pageSize.toString() });
-    //     if (offset) {
-    //         params.append('offset', offset);
-    //     }
-
-    //     const response = await fetch(`${url}?${params.toString()}`);
-    //     const data = await response.json();
-    //     return data as ArticlesResponse;
-    // }
-
     async function fetchAllArticles(): Promise<ArticlesResponse> {
         const url = `${import.meta.env.VITE_API_URL}/articles`;
         const response = await fetch(url);
         const data = await response.json();
         return data as ArticlesResponse;
     }
-
-    // useEffect(() => {
-    //     setLoading(true);
-    //     fetchArticles(pageSize).then(data => {
-    //         setArticles(data.records);
-    //         setLoading(false);
-    //     });
-    // }, []);
 
     useEffect(() => {
         setLoading(true);
@@ -101,14 +81,6 @@ function Posts() {
         });
     }, []);
 
-
-    // const handleClick = (pageNumber: number) => {
-    //     setCurrentPage(pageNumber);
-    //     fetchArticles(pageSize, offset).then(data => {
-    //         setArticles(data.records);
-    //         setOffset(data.offset);
-    //     });
-    // }
 
     const handleClick = (pageNumber: number) => {
         setCurrentPage(pageNumber);
@@ -135,8 +107,7 @@ function Posts() {
     }
 
     if (loading) return (<div className="loadingio-spinner-pulse-ogt0qnihb3"><div className="ldio-m3bt2oi6y4n">
-<div></div><div></div><div></div>
-</div></div>)
+    </div></div>)
 
     return (
         <section className="blog-news">
@@ -159,7 +130,7 @@ function Posts() {
                                         <h3 className="card-title" id="blog-head2">{article.fields.Title}</h3>
                                         <p className="card-text blog-info">{article.fields.Headline}</p>
                                         <div className="d-flex flex-column flex-lg-row justify-content-between">
-                                            <div className="more-info" onClick={() => navigate(`article/${article.id}`)}><a className="text-decoration-none">
+                                            <div className="more-info" onClick={() => navigate(`/article/${article.id}`)}><a className="text-decoration-none">
                                                 <p>Read More<span><img src={Readmore} alt="" /></span></p>
                                             </a></div>
                                             <div className="post-time">
