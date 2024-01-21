@@ -37,7 +37,7 @@ function Navbar() {
                                 <a className="nav-link disabled d-inline-block" href="#" tabIndex={-1} aria-disabled="true">CONTACT US</a>
                             </li>
 
-                            <li className="nav-btn">
+                            <li className="nav-btn" onClick={() => navigate('/booking')}>
                                 <button className="btn text-center booking-btn" type="submit">BOOK A SESSION</button>
                             </li>
                             <li>
