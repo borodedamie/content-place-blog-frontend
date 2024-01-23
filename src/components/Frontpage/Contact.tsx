@@ -1,4 +1,61 @@
+import { FormEvent, useState } from 'react';
+import { Bounce, toast } from 'react-toastify';
+
 function Contact() {
+    const [loading, setLoading] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: ''
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        try {
+            setLoading(true);
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/contacts`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            const data = await response.json();
+            if (data) {
+                if (data) {
+                    toast('Thank you for contacting us.', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                    });
+
+                    setFormData({
+                        name: '',
+                        email: '',
+                        phone: '',
+                        service: '',
+                        message: ''
+                    });
+                }
+            }
+            setLoading(false);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
     return (
         <section className="p-5 " id="contact">
             <div className="container p-4">
@@ -15,7 +72,7 @@ function Contact() {
                 </div>
                 <div className="row justify-content-center">
                     <div className="col-lg-12">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="row">
                                 <div className="col-lg-6 col-md-12 col-sm-12">
                                     <div className="mb-3">
@@ -29,9 +86,10 @@ function Contact() {
                                         <input
                                             type="text"
                                             name="name"
-                                            id="name"
                                             placeholder="Your Name"
                                             className="form-control"
+                                            value={formData.name}
+                                            onChange={handleChange}
                                         />
                                     </div>
                                 </div>
@@ -46,9 +104,10 @@ function Contact() {
                                         <input
                                             type="email"
                                             name="email"
-                                            id="email"
                                             placeholder="Your Email"
                                             className="form-control"
+                                            value={formData.email}
+                                            onChange={handleChange}
                                         />
                                     </div>
                                 </div>
@@ -63,9 +122,10 @@ function Contact() {
                                         <input
                                             type="tel"
                                             name="phone"
-                                            id="phone"
                                             placeholder=" 0812 456 7890"
                                             className="form-control"
+                                            value={formData.phone}
+                                            onChange={handleChange}
                                         />
                                     </div>
                                 </div>
@@ -80,8 +140,9 @@ function Contact() {
                                         <select
                                             className="form-select"
                                             name="service"
-                                            id="service"
                                             aria-label="Default select example"
+                                            value={formData.service}
+                                            onChange={handleChange}
                                         >
                                             <option> Select Service</option>
                                             <option value="audio">Audio Content Creation</option>
@@ -101,12 +162,11 @@ function Contact() {
                                         </label>
                                         <textarea
                                             name="message"
-                                            id="message"
-                                            cols={30}
-                                            rows={4}
                                             placeholder="Your Message"
                                             className="form-control"
-                                            defaultValue={""}
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            style={{ height: '200px' }}
                                         />
                                     </div>
                                 </div>
@@ -120,7 +180,7 @@ function Contact() {
                                         id="contact_form_submit"
                                         type="submit"
                                     >
-                                        SEND MESSAGE
+                                        {loading ? 'Sending message...' : 'SEND MESSAGE'}
                                     </button>
                                 </div>
                             </div>

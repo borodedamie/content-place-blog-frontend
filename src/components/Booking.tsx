@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { toast } from 'react-toastify';
+import { Bounce, toast } from 'react-toastify';
 
 function Booking() {
     const [loading, setLoading] = useState(false);
@@ -40,6 +40,18 @@ function Booking() {
                     draggable: true,
                     progress: undefined,
                     theme: "light",
+                    transition: Bounce,
+                });
+
+                setFormData({
+                    first_name: '',
+                    last_name: '',
+                    email: '',
+                    phone_number: '',
+                    session_time: '',
+                    how_did_you_hear_about_us: '',
+                    services: '',
+                    date: ''
                 });
             }
             setLoading(false);
@@ -132,7 +144,7 @@ function Booking() {
 
                 <div className="input-con">
                     <button type="submit" className="booking-submit-btn" id="wait">
-                        {loading ? 'Loading...' : 'Submit'}
+                        {loading ? 'Submitting booking...' : 'Submit'}
                     </button>
                 </div>
             </form>

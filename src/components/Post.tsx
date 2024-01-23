@@ -3,6 +3,7 @@ import Readmore from '../assets/readMore.png';
 import PagArrow from '../assets/ArrowPag.png';
 import { useNavigate } from 'react-router-dom';
 import { formatRelativeTime } from '../util/ConvertDateTime';
+import Loading from "../assets/loading.gif";
 
 interface Image {
     filename: string;
@@ -106,8 +107,11 @@ function Posts() {
         }
     }
 
-    if (loading) return (<div className="loadingio-spinner-pulse-ogt0qnihb3"><div className="ldio-m3bt2oi6y4n">
-    </div></div>)
+    if (loading) return (
+        <div style={{ textAlign: 'center', marginTop: '10%', marginBottom: '10%' }}>
+            <img src={Loading} alt="loading-gif" />
+        </div>
+    )
 
     return (
         <section className="blog-news">

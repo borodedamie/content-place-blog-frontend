@@ -18,18 +18,9 @@ function Navbar() {
                     </button>
                     <div className="collapse navbar-collapse navigation-bar" id="navbarScroll" style={{ background: "#fff" }}>
                         <ul className="navbar-nav ms-auto my-2 my-lg-0 ml-auto text-center no-wrap d-flex justify-content-center customScroll">
-                            <li className="nav-item dropdown d-inline-block" id="service">
-                                <a className="nav-link dropdown-toggle d-inline-block" href="#" id="navbarScrollingDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    OUR SERVICES
-                                </a>
-                                <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                    <li className="nav-item"><a className="dropdown-item " href="#">Audio Content Creation</a></li>
-                                    <li className="nav-item"><a className="dropdown-item " href="#">Visual Content Creation</a></li>
-                                    <li className="nav-item"><a className="dropdown-item" href="#">Text Content Creation</a></li>
-                                    <li className="nav-item"><a className="dropdown-item " href="#">Web Services</a></li>
-                                </ul>
-                            </li> 
+                            <li className="nav-item d-inline-block" id="about">
+                                <a className="nav-link disabled d-inline-block" href="#" tabIndex={-1} aria-disabled="true">OUR SERVICES</a>
+                            </li>
                             <li className="nav-item d-inline-block" id="about">
                                 <a className="nav-link disabled d-inline-block" href="#" tabIndex={-1} aria-disabled="true">ABOUT US</a>
                             </li>
